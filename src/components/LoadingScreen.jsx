@@ -127,7 +127,7 @@ export default function LoadingScreen({ onComplete }) {
                   transition={{ duration: 0.6 }}
                   className="main-title"
                 >
-                  ★ ZENOFEST ★
+                  ZENOFEST
                 </motion.span>
                 <div className="title-glow-line" />
               </div>
@@ -142,7 +142,7 @@ export default function LoadingScreen({ onComplete }) {
                 transition={{ duration: 0.8 }}
                 className="subtitle-text"
               >
-                NATIONAL LEVEL TECH SYMPOSIUM{' '}
+                NATIONAL LEVEL PROJECT EXPO{' '}
                 <span className="year-accent">2026</span>
               </motion.h1>
 
