@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import LoadingScreen from './components/LoadingScreen'
+import About from './components/About'
 import './App.css'
 
 function App() {
@@ -9,7 +10,7 @@ function App() {
     <>
       {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
       <div className="app">
-        <h1>Welcome to ZenoFest 2K26!</h1>
+        <About />
       </div>
     </>
   )
