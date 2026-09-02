@@ -2,7 +2,7 @@
 .timeline-scroll-wrapper {
   position: relative;
   min-height: 220vh; /* Exact scroll height so Station 8 un-sticks immediately without dead scroll space */
-  background: #070913;
+  background: transparent;
 }
 
 .timeline-sticky-viewport {
@@ -20,7 +20,9 @@
   position: relative;
   width: 100%;
   height: 100%;
-  background: #070913;
+  background: rgba(7, 9, 19, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   color: #ffffff;
   padding: 40px 40px;
   display: flex;

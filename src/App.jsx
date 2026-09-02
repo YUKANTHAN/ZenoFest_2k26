@@ -5,6 +5,8 @@ import About from './components/About'
 import Timeline from './components/Timeline'
 import Events from './components/Events'
 import Gallery from './components/Gallery'
+import SceneCanvas from './components/3d/SceneCanvas'
+import CrackEffectOverlay from './components/fx/CrackEffectOverlay'
 import './App.css'
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
 
   return (
     <>
+      <SceneCanvas />
+      <CrackEffectOverlay />
       {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
       <div className="app">
         <Navbar />
