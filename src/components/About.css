@@ -193,8 +193,8 @@
 
 /* ── Right Side ── */
 .about-right {
-  flex: 1;
-  max-width: 500px;
+  flex: 1.2;
+  max-width: 640px;
 }
 
 .overview-label {
