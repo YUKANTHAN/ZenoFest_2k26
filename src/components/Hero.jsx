@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import './Hero.css'
 
 export default function Hero({ onSkip }) {
-  const [loaded, setLoaded] = useState(0)
+  const [progress, setProgress] = useState(0)
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setLoaded((prev) => {
+      setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval)
           return 100
         }
-        return prev + 2
+        return prev + 1
       })
     }, 30)
     return () => clearInterval(interval)
@@ -25,39 +25,91 @@ export default function Hero({ onSkip }) {
         <span className="hero-top-text">
           NEXORA 2026 | Beyond Limits. Beyond Imagination — by HackHere
         </span>
-        <span className="hero-top-percent">{loaded}%</span>
+        <span className="hero-top-percent">{progress}%</span>
       </div>
 
-      {/* Background Effects */}
-      <div className="hero-bg-grid" />
-      <div className="hero-glow-orb hero-glow-1" />
-      <div className="hero-glow-orb hero-glow-2" />
+      {/* Circuit Background */}
+      <div className="hero-circuit-bg">
+        <div className="circuit-line circuit-1" />
+        <div className="circuit-line circuit-2" />
+        <div className="circuit-line circuit-3" />
+        <div className="circuit-line circuit-4" />
+        <div className="circuit-line circuit-5" />
+        <div className="circuit-dot circuit-dot-1" />
+        <div className="circuit-dot circuit-dot-2" />
+        <div className="circuit-dot circuit-dot-3" />
+        <div className="circuit-dot circuit-dot-4" />
+        <div className="circuit-dot circuit-dot-5" />
+        <div className="circuit-dot circuit-dot-6" />
+      </div>
+
+      {/* Glow Effects */}
+      <div className="hero-glow-center" />
+      <div className="hero-glow-left" />
+      <div className="hero-glow-right" />
+
+      {/* HUD Elements */}
+      <div className="hud-element hud-top-left">
+        <span className="hud-label">CORE STABILITY</span>
+        <span className="hud-value">{progress}%</span>
+        <span className="hud-status">OPTIMAL</span>
+      </div>
+
+      <div className="hud-element hud-top-right">
+        <span className="hud-label">LOAD</span>
+        <span className="hud-value">{progress}%</span>
+        <span className="hud-status">SYSTEM READY</span>
+      </div>
+
+      <div className="hud-element hud-mid-right">
+        <span className="hud-label">POWER LEVEL</span>
+        <span className="hud-value">{progress}%</span>
+        <span className="hud-status">OPTIMAL</span>
+      </div>
+
+      <div className="hud-element hud-bottom-left">
+        <span className="hud-label">INNOVATION FLOW</span>
+        <span className="hud-value-sm">ACTIVE</span>
+        <span className="hud-tagline">IDEAS. BUILD. IMPACT.</span>
+      </div>
+
+      <div className="hud-element hud-bottom-right">
+        <span className="hud-label">FUTURE STATUS</span>
+        <span className="hud-value-sm">UNLOCKED</span>
+        <span className="hud-tagline">LIMITS. BROKEN.</span>
+      </div>
 
       {/* Main Content */}
       <div className="hero-content">
+        {/* Nexora-style Wireframe Title */}
         <motion.div
-          className="hero-presenter"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          className="hero-title-wrapper"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         >
-          HACKHERE PRESENTS
+          <h1 className="hero-title-nexora">ZENOFEST</h1>
+          <div className="hero-title-wireframe" />
+          <div className="hero-title-glow-ring" />
+          <div className="hero-title-particles" />
         </motion.div>
 
-        <motion.h1
-          className="hero-title"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        {/* Subtitle */}
+        <motion.div
+          className="hero-subtitle"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
         >
-          NEXORA
-        </motion.h1>
+          CODE THE NEXT ERA
+        </motion.div>
 
+        {/* Domain Badges */}
         <motion.div
           className="hero-domains"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
+          transition={{ duration: 0.8, delay: 1.5 }}
         >
           <span className="domain-badge">AI / ML</span>
           <span className="domain-badge">CYBER SECURITY</span>
@@ -65,21 +117,23 @@ export default function Hero({ onSkip }) {
           <span className="domain-badge">DEVOPS</span>
         </motion.div>
 
+        {/* Event Info */}
         <motion.div
           className="hero-event-info"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1 }}
+          transition={{ duration: 0.8, delay: 1.7 }}
         >
           <span className="event-location">SNS IHUB COIMBATORE</span>
           <span className="event-date-badge">AUG 22–23, 2026</span>
         </motion.div>
 
+        {/* Skip Button */}
         <motion.div
           className="hero-skip"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.5 }}
+          transition={{ duration: 0.8, delay: 2 }}
         >
           <button className="skip-btn" onClick={onSkip}>
             [ CLICK OR PRESS SPACE TO SKIP ]
@@ -87,21 +141,11 @@ export default function Hero({ onSkip }) {
         </motion.div>
       </div>
 
-      {/* Navigation */}
-      <nav className="hero-nav">
-        <a href="#about">About</a>
-        <a href="#domains">Domains</a>
-        <a href="#schedule">Schedule</a>
-        <a href="#rewards">Rewards</a>
-        <a href="#sponsors">Sponsors</a>
-        <a href="#team">Team</a>
-        <a href="#faq">FAQ</a>
-      </nav>
-
       {/* Bottom Bar */}
       <div className="hero-bottom-bar">
         <span className="hero-bottom-label">FINAL PORTAL</span>
         <a href="#register" className="hero-register-btn">Register Now</a>
+        <span className="hero-scroll-text">Scroll Down</span>
       </div>
     </section>
   )
