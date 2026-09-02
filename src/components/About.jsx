@@ -3,7 +3,7 @@ import './About.css'
 
 export default function About() {
   return (
-    <section className="about-section">
+    <section className="about-section" id="about">
       {/* Background geometric patterns */}
       <div className="about-bg-pattern">
         <div className="hex-line hex-line-1" />

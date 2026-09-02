@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import LoadingScreen from './components/LoadingScreen'
+import Navbar from './components/Navbar'
 import About from './components/About'
+import Events from './components/Events'
 import Gallery from './components/Gallery'
 import './App.css'
 
@@ -11,7 +13,9 @@ function App() {
     <>
       {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
       <div className="app">
+        <Navbar />
         <About />
+        <Events />
         <Gallery />
       </div>
     </>
