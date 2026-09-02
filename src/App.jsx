@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import LoadingScreen from './components/LoadingScreen'
 import About from './components/About'
-import Gallery from './components/Gallery'
 import './App.css'
 
 function App() {
@@ -12,7 +11,6 @@ function App() {
       {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
       <div className="app">
         <About />
-        <Gallery />
       </div>
     </>
   )
