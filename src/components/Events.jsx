@@ -2,8 +2,6 @@ import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Calendar,
-  Clock,
-  Users,
   Trophy,
   Search,
   Sparkles,
@@ -11,8 +9,7 @@ import {
   Gamepad2,
   HelpCircle,
   Zap,
-  Layers,
-  ArrowRight
+  Layers
 } from 'lucide-react'
 import { eventsData } from '../data/eventsData'
 import EventModal from './EventModal'
@@ -24,6 +21,8 @@ export default function Events() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedEvent, setSelectedEvent] = useState(null)
   const [registeringEvent, setRegisteringEvent] = useState(null)
+  const [hoveredId, setHoveredId] = useState(null)
+  const [imgFails, setImgFails] = useState({})
 
   const filteredEvents = useMemo(() => {
     return eventsData.filter((event) => {
@@ -158,7 +157,9 @@ export default function Events() {
         <motion.div layout className="flip-grid">
           <AnimatePresence mode="popLayout">
             {filteredEvents.map((event, idx) => {
-              const isTech = event.type === 'TECHNICAL'
+              const isHovered = hoveredId === event.id
+              const imgFailed = !!imgFails[event.id]
+              const openRules = () => setSelectedEvent(event)
 
               return (
                 <motion.div
@@ -168,92 +169,91 @@ export default function Events() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.92 }}
                   transition={{ duration: 0.45, delay: idx * 0.07 }}
-                  className="flip-card-outer"
-                  style={{ '--card-accent': event.accentColor }}
+                  className="ab-tile-wrap"
+                  style={{ perspective: 1200 }}
+                  onMouseEnter={() => setHoveredId(event.id)}
+                  onMouseLeave={() => setHoveredId(null)}
+                  onClick={() => {
+                    if (window.innerWidth < 768) {
+                      isHovered ? openRules() : setHoveredId(event.id)
+                    } else {
+                      openRules()
+                    }
+                  }}
                 >
-                  <div className="flip-card-inner">
-                    {/* ──── FRONT ──── */}
-                    <div className="flip-face flip-front">
-                      <img
-                        src={event.coverImage}
-                        alt={event.title}
-                        className="front-cover-img"
-                        loading="lazy"
-                      />
-                      <div className="front-overlay" />
+                  <div className={`ab-bloom ${isHovered ? 'on' : ''}`} />
 
-                      {/* Top Tags */}
-                      <div className="front-top-row">
-                        <span className={`type-chip ${isTech ? 'chip-tech' : 'chip-nontech'}`}>
-                          {isTech ? 'TECHNICAL' : 'NON-TECHNICAL'}
-                        </span>
-                        {event.hasCashPrize && (
-                          <span className="cash-chip">₹10,000</span>
-                        )}
-                      </div>
-
-                      {/* Bottom Info */}
-                      <div className="front-bottom">
-                        <h3 className="front-event-name">{event.title}</h3>
-                        <p className="front-tagline">{event.tagline}</p>
-                        <div className="front-meta">
-                          <span className="front-meta-item">
-                            <Calendar size={13} />
-                            {event.date.split('(')[0]}
-                          </span>
-                          <span className="front-meta-item">
-                            <Users size={13} />
-                            {event.teamSize}
-                          </span>
+                  <motion.div
+                    className="ab-stack"
+                    style={{ transformStyle: 'preserve-3d' }}
+                    animate={{ rotateX: 75 * !!isHovered }}
+                    transition={{ type: 'spring', stiffness: 100, damping: 15 }}
+                  >
+                    {/* ── Card Frame (tilts back on hover) ── */}
+                    <div className={`ab-frame ${isHovered ? 'hovered' : ''}`}>
+                      {!imgFailed ? (
+                        <img
+                          src={event.coverImage}
+                          alt={event.title}
+                          loading="lazy"
+                          className={`ab-img ${isHovered ? 'hovered' : ''}`}
+                          onError={() => setImgFails((p) => (p[event.id] ? p : { ...p, [event.id]: true }))}
+                        />
+                      ) : (
+                        <div className="ab-img-fallback shown">
+                          <span>{event.title}</span>
                         </div>
-                      </div>
+                      )}
+                      <div className="ab-overlay" />
+                      {event.hasCashPrize && (
+                        <span className="ab-cash-chip">₹10,000 Cash Prize</span>
+                      )}
                     </div>
 
-                    {/* ──── BACK ──── */}
-                    <div className="flip-face flip-back">
-                      <div className="back-accent-glow" />
-
-                      <div className="back-header">
-                        <span className={`type-chip ${isTech ? 'chip-tech' : 'chip-nontech'}`}>
-                          {isTech ? 'TECHNICAL' : 'NON-TECHNICAL'}
-                        </span>
-                        {event.badge && <span className="back-badge">{event.badge}</span>}
+                    {/* ── Reveal Layer (rises toward viewer on hover) ── */}
+                    <motion.div
+                      className="ab-reveal"
+                      initial={{ opacity: 0, z: 0 }}
+                      animate={{
+                        opacity: isHovered ? 1 : 0,
+                        z: isHovered ? 180 : 0,
+                        y: isHovered ? -100 : 0,
+                        rotateX: isHovered ? -75 : 0
+                      }}
+                      transition={{ type: 'spring', stiffness: 120, damping: 18 }}
+                      style={{ transformStyle: 'preserve-3d', pointerEvents: isHovered ? 'auto' : 'none' }}
+                    >
+                      <div className="ab-title-box">
+                        <h4 className="ab-tile-title">{event.title}</h4>
                       </div>
 
-                      <h3 className="back-title">{event.title}</h3>
+                      <div className="ab-divider" />
 
-                      <div className="back-time-display">
-                        <Clock size={18} className="back-time-icon" />
-                        <span className="back-time-text">{event.time}</span>
+                      <div className="ab-info">
+                        <p className="ab-info-row">
+                          <span className="ab-info-label">Time</span>
+                          <span className="ab-info-val">{event.time}</span>
+                        </p>
+                        <p className="ab-info-row ab-info-clamp">
+                          <span className="ab-info-label">Date</span>
+                          <span className="ab-info-val">{event.date}</span>
+                        </p>
+                        <p className="ab-info-row ab-info-clamp">
+                          <span className="ab-info-label">Venue</span>
+                          <span className="ab-info-val">{event.venue}</span>
+                        </p>
                       </div>
 
-                      <p className="back-desc">{event.shortDesc}</p>
-
-                      {/* Action Buttons */}
-                      <div className="back-actions">
-                        <button
-                          className="btn-know-more"
-                          onClick={(e) => {
-                            e.stopPropagation()
-                            setSelectedEvent(event)
-                          }}
-                        >
-                          <span>Know More</span>
-                          <ArrowRight size={15} />
-                        </button>
-
-                        <button
-                          className="btn-back-register"
-                          onClick={(e) => {
-                            e.stopPropagation()
-                            setRegisteringEvent(event)
-                          }}
-                        >
-                          Register
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                      <motion.button
+                        className="ab-know-more"
+                        onClick={(e) => { e.stopPropagation(); openRules() }}
+                        whileHover={{ scale: 1.1, boxShadow: '0px 0px 20px rgb(220, 38, 38)', backgroundColor: '#ffffff', color: '#000000' }}
+                        whileTap={{ scale: 0.9 }}
+                      >
+                        Know More
+                      </motion.button>
+                    </motion.div>
+                  </motion.div>
                 </motion.div>
               )
             })}
