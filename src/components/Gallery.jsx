@@ -237,11 +237,6 @@ export default function Gallery() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="section-label" style={{ marginBottom: '14px' }}>
-              <span className="label-number">03</span>
-              <span className="label-divider">/</span>
-              <span className="label-text">FESTIVAL GALLERY</span>
-            </div>
             <div className="gallery-title-wrapper">
               <span className="gallery-pill">TELEPORT</span>
               <h2 className="gallery-title">SCANNER</h2>

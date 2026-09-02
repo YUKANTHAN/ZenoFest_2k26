@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react'
 import LoadingScreen from './components/LoadingScreen'
-import Navbar from './components/Navbar'
+import Hero from './components/Hero'
 import About from './components/About'
-import Timeline from './components/Timeline'
-import Events from './components/Events'
-import Gallery from './components/Gallery'
+import Create from './components/Create'
 import './App.css'
 
 function App() {
@@ -24,11 +22,9 @@ function App() {
     <>
       {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
       <div className="app">
-        <Navbar />
+        <Hero onSkip={() => setLoading(false)} />
         <About />
-        <Timeline />
-        <Events />
-        <Gallery />
+        <Create />
       </div>
     </>
   )
