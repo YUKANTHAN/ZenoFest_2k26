@@ -2,7 +2,9 @@
 .about-section {
   position: relative;
   min-height: 100vh;
-  background: #070913;
+  background: rgba(7, 9, 19, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;

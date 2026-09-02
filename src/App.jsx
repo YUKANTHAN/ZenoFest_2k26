@@ -3,6 +3,8 @@ import LoadingScreen from './components/LoadingScreen'
 import Hero from './components/Hero'
 import About from './components/About'
 import Create from './components/Create'
+import SceneCanvas from './components/3d/SceneCanvas'
+import CrackEffectOverlay from './components/fx/CrackEffectOverlay'
 import './App.css'
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
 
   return (
     <>
+      <SceneCanvas />
+      <CrackEffectOverlay />
       {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
       <div className="app">
         <Hero onSkip={() => setLoading(false)} />
