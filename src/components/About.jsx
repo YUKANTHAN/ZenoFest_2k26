@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import CountdownClock from './CountdownClock'
 import './About.css'
 
 export default function About() {
@@ -83,8 +84,11 @@ export default function About() {
                 <circle cx="12" cy="12" r="3" fill="currentColor"/>
               </svg>
             </div>
-            <span className="date-text">08-09 OCT 2026 • SIVAKASI</span>
+            <span className="date-text">25-26 SEP 2026 • SIVAKASI</span>
           </div>
+
+          {/* HackITon Style Countdown Clock */}
+          <CountdownClock />
         </motion.div>
       </div>
     </section>
