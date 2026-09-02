@@ -124,7 +124,7 @@ export default function Hero({ onSkip }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.7 }}
         >
-          <span className="event-location">SNS IHUB COIMBATORE</span>
+          <span className="event-location">PSR IT</span>
           <span className="event-date-badge">AUG 22–23, 2026</span>
         </motion.div>
 
