@@ -1,0 +1,15 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+alembic
+psycopg2-binary
+pydantic-settings
+python-multipart
+httpx
+razorpay
+gspread
+google-auth
+fpdf2
+email-validator
+pytest
+httpx[secure]
