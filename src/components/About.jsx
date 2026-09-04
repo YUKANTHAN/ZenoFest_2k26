@@ -23,8 +23,6 @@ export default function About() {
           viewport={{ once: true }}
         >
           <div className="section-label">
-            <span className="label-number">01</span>
-            <span className="label-divider">/</span>
             <span className="label-text">ABOUT THE EVENT</span>
           </div>
 
@@ -84,11 +82,11 @@ export default function About() {
                 <circle cx="12" cy="12" r="3" fill="currentColor"/>
               </svg>
             </div>
-            <span className="date-text">25-26 SEP 2026 • SIVAKASI</span>
+            <span className="date-text">25 SEP 2026 • SIVAKASI</span>
           </div>
 
           {/* HackITon Style Countdown Clock */}
-          <CountdownClock />
+          <CountdownClock showTelemetry={false} />
         </motion.div>
       </div>
     </section>

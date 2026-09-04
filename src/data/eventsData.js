@@ -3,7 +3,7 @@ import uiUxImg from './ui ux .png'
 import logicHuntImg from './p1.jpeg'
 import whoAmIImg from './Who-Am-I-1.png'
 import rapidFireImg from './p2.jpeg'
-import freeFireImg from './WhatsApp Image 2026-09-03 at 3.09.48 PM.jpeg'
+import freeFireImg from './FF.png'
 
 export const eventsData = [
   // ── TECHNICAL EVENTS ──
@@ -20,8 +20,8 @@ export const eventsData = [
     accentColor: '#06b6d4',
     teamSize: '2 – 3 Members',
     date: '25.09.2026',
-    time: '10:00 AM – 01:30 PM',
-    venue: 'IT Innovation Center & Project Labs',
+    time: '10:30 AM – 12:30 PM',
+    venue: 'IT Seminar Hall',
     hasCashPrize: true,
     prizePool: '₹10,000 Cash Prize + Merit Trophy + Certificate',
     firstPrize: '₹5,000',
@@ -32,7 +32,7 @@ export const eventsData = [
       {
         roundNumber: '01',
         title: 'Project Presentation & Q&A',
-        time: '10:00 AM – 01:30 PM',
+        time: '10:30 AM – 12:30 PM',
         desc: 'Each team has 2 to 4 minutes to present their project. After the presentation, evaluators will ask questions for 2 to 3 minutes.'
       }
     ],
@@ -52,13 +52,15 @@ export const eventsData = [
       'Proper documentation related to the project'
     ],
     coordinators: [
+      { name: 'Dr. R. Ramani', role: 'Staff Coordinator (HOD/IT)' },
       { name: 'Dr. P. Edwin Dhas', role: 'Staff Coordinator (AP/IT)' },
       { name: 'Ramakrishnan M', role: 'Student Coordinator (III/IT)' },
       { name: 'Yukanthan P G', role: 'Student Coordinator (III/IT)' },
       { name: 'Guhan S', role: 'Student Coordinator (III/IT)' },
       { name: 'Sumithra S', role: 'Student Coordinator (III/IT)' },
       { name: 'Narmatha Baby B', role: 'Student Coordinator (III/IT)' },
-      { name: 'Rishiga R', role: 'Student Coordinator (III/IT)' }
+      { name: 'Rishiga R', role: 'Student Coordinator (III/IT)' },
+      { name: 'Revathi P', role: 'Student Coordinator (III/IT)' }
     ]
   },
   {
@@ -74,8 +76,8 @@ export const eventsData = [
     accentColor: '#8b5cf6',
     teamSize: '2 – 3 Members',
     date: '25.09.2026',
-    time: '02:00 PM – 04:30 PM',
-    venue: 'CAD Design Studio & Multimedia Lab',
+    time: '10:30 AM – 12:30 PM',
+    venue: 'IT LAB -1',
     hasCashPrize: false,
     prizePool: 'Winner Trophy + Certificate of Merit + Design Swag',
     firstPrize: 'Winner Trophy + Certificate of Merit',
@@ -150,8 +152,8 @@ export const eventsData = [
     accentColor: '#3b82f6',
     teamSize: '2 – 3 Members',
     date: '25.09.2026',
-    time: '10:00 AM – 12:30 PM',
-    venue: 'Advanced Coding Lab 2 & Server Room',
+    time: '10:30 AM – 12:30 PM',
+    venue: 'IT Lab-2',
     hasCashPrize: false,
     prizePool: 'Champion Trophy + Certificate of Merit + Algo Badges',
     firstPrize: 'Champion Trophy + Certificate of Merit',
@@ -186,7 +188,6 @@ export const eventsData = [
       'Judges decision is final.'
     ],
     requirements: [
-      'Laptop with preferred IDE/compiler installed',
       'College Identity Card of all team members'
     ],
     coordinators: [
@@ -214,8 +215,8 @@ export const eventsData = [
     accentColor: '#ec4899',
     teamSize: '2 – 3 Members',
     date: '25.09.2026',
-    time: '11:30 AM – 01:00 PM',
-    venue: 'Open Amphitheatre / Seminar Hall 1',
+    time: '02:00 PM – 03:00 PM',
+    venue: 'III Yr IT class (TF01)',
     hasCashPrize: false,
     prizePool: 'Winner Trophy + Certificate of Merit + Gift Hampers',
     firstPrize: 'Winner Trophy + Certificate of Merit + Hamper',
@@ -255,9 +256,10 @@ export const eventsData = [
     ],
     coordinators: [
       { name: 'Mr. S. Shunmuga Sundaram', role: 'Staff Coordinator (AP/IT)' },
+      { name: 'Ms. Packiya Lakshmi', role: 'Staff Coordinator (AP/IT)' },
       { name: 'Manivasaga Perumal P', role: 'Student Coordinator (III/IT)' },
       { name: 'Jeya Prakash S', role: 'Student Coordinator (III/IT)' },
-      { name: 'Priya Dharshini C', role: 'Student Coordinator (III/IT)' },
+      { name: 'Priyadharshini C', role: 'Student Coordinator (III/IT)' },
       { name: 'Harsika Sri M', role: 'Student Coordinator (III/IT)' }
     ]
   },
@@ -274,8 +276,8 @@ export const eventsData = [
     accentColor: '#f59e0b',
     teamSize: '2 – 3 Members',
     date: '25.09.2026',
-    time: '11:00 AM – 12:30 PM',
-    venue: 'Main University Auditorium',
+    time: '02:00 PM – 03:00 PM',
+    venue: 'II yr IT Class (TF02)',
     hasCashPrize: false,
     prizePool: 'Winner Trophy + Certificate of Merit + Fest Merchandise',
     firstPrize: 'Winner Trophy + Certificate of Merit + Swag',
@@ -321,7 +323,7 @@ export const eventsData = [
       { name: 'Manoj M', role: 'Student Coordinator (III/IT)' },
       { name: 'Jagan Kumar V', role: 'Student Coordinator (III/IT)' },
       { name: 'Caroline M', role: 'Student Coordinator (III/IT)' },
-      { name: 'Sujitha M', role: 'Student Coordinator (III/IT)' },
+      { name: 'Sujitha A', role: 'Student Coordinator (III/IT)' },
       { name: 'Kanaga Yuvasri R', role: 'Student Coordinator (III/IT)' }
     ]
   },
@@ -336,16 +338,18 @@ export const eventsData = [
     objectFit: 'cover',
     objectPosition: 'center 20%',
     accentColor: '#ef4444',
-    teamSize: '2 – 3 Members',
+    teamSize: 'Solo',
     date: '25.09.2026',
-    time: '02:00 PM – 04:00 PM',
-    venue: 'Gaming Arena',
+    time: '02:00 PM – 03:00 PM',
+    venue: 'IT Seminar Hall',
     hasCashPrize: true,
-    prizePool: 'Winner Trophy + Certificate of Merit + Cash Prize',
-    firstPrize: 'Winner Trophy + Certificate of Merit',
-    secondPrize: 'Runner Trophy + Certificate of Merit',
-    thirdPrize: 'Certificate of Appreciation',
-    overview: 'Get ready for intense action in the Free Fire Esports tournament! The event consists of two rounds: Battle Royale and Clash Squad. Prove your tactical superiority and outlast your opponents.',
+    cashPrizeBadge: '₹1,000 Cash Prize',
+    prizePool: '₹1,000 Cash Prize for 1st Winner',
+    firstPrize: '₹1,000 (Sole Winner)',
+    firstPrizePerk: 'Certificate of Merit + Cash Prize',
+    secondPrize: null,
+    thirdPrize: null,
+    overview: 'Get ready for intense action in the Free Fire Esports tournament! The event consists of two rounds: Battle Royale and Clash Squad. Prove your tactical superiority and outlast your opponents. The only prize for this tournament is a ₹1,000 cash prize awarded exclusively to the single winner who claims victory.',
     rounds: [
       {
         roundNumber: '01',
@@ -390,10 +394,13 @@ export const eventsData = [
     ],
     coordinators: [
       { name: 'Mr. T. Saravanan', role: 'Staff Coordinator (AP/IT)' },
+      { name: 'Dr. P. Selvakumar', role: 'Staff Coordinator (AP/IT)' },
       { name: 'Ragavan K', role: 'Student Coordinator (III/IT)' },
       { name: 'Abilash Karthick G', role: 'Student Coordinator (III/IT)' },
       { name: 'Muthu Koodalingam V', role: 'Student Coordinator (III/IT)' },
-      { name: 'Thiru Kumaran M', role: 'Student Coordinator (III/IT)' }
+      { name: 'Thiru Kumaran M', role: 'Student Coordinator (III/IT)' },
+      { name: 'Gopi Krishnan M', role: 'Student Coordinator (III/IT)' },
+      { name: 'Aravinth P', role: 'Student Coordinator (III/IT)' }
     ]
   }
 ]

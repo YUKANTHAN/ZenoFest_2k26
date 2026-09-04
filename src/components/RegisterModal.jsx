@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Users, Send, UserPlus, Trash2, AlertCircle } from 'lucide-react'
+import PaymentModal from './PaymentModal'
 
 const API_BASE = 'http://localhost:8000'
 
-export default function RegisterModal({ event, onClose, onPaymentSuccess }) {
+export default function RegisterModal({ event, onClose }) {
   const [leaderName, setLeaderName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
@@ -15,6 +16,7 @@ export default function RegisterModal({ event, onClose, onPaymentSuccess }) {
   const [members, setMembers] = useState([])
   const [error, setError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [paymentData, setPaymentData] = useState(null)
 
   useEffect(() => {
     if (event) document.body.style.overflow = 'hidden'
@@ -22,6 +24,17 @@ export default function RegisterModal({ event, onClose, onPaymentSuccess }) {
   }, [event])
 
   if (!event) return null
+
+  if (paymentData) {
+    return createPortal(
+      <PaymentModal
+        paymentData={paymentData}
+        onClose={() => { setPaymentData(null); onClose() }}
+        onBack={() => setPaymentData(null)}
+      />,
+      document.body
+    )
+  }
 
   const parseTeamSize = () => {
     const match = event.teamSize?.match(/(\d+)\s*[-–]\s*(\d+)/)
@@ -86,7 +99,7 @@ export default function RegisterModal({ event, onClose, onPaymentSuccess }) {
       }
 
       const data = await res.json()
-      onPaymentSuccess?.({
+      setPaymentData({
         registrationId: data.registration_id,
         razorpayOrderId: data.razorpay_order_id,
         amount: data.amount,

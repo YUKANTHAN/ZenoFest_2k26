@@ -32,3 +32,12 @@ dist-ssr
 .env.local
 .env.*.local
 example.env
+
+# Python
+__pycache__/
+*.pyc
+venv/
+*.db
+
+# Backend generated
+Zenofest_backend/invoices/

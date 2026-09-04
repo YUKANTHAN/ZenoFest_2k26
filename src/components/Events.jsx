@@ -14,7 +14,6 @@ import {
 import { eventsData } from '../data/eventsData'
 import EventModal from './EventModal'
 import RegisterModal from './RegisterModal'
-import PaymentModal from './PaymentModal'
 import './Events.css'
 
 export default function Events() {
@@ -22,7 +21,6 @@ export default function Events() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedEvent, setSelectedEvent] = useState(null)
   const [registeringEvent, setRegisteringEvent] = useState(null)
-  const [paymentData, setPaymentData] = useState(null)
   const [hoveredId, setHoveredId] = useState(null)
   const [imgFails, setImgFails] = useState({})
 
@@ -111,7 +109,7 @@ export default function Events() {
             )}
             <div className="ab-overlay" />
             {event.hasCashPrize && (
-              <span className="ab-cash-chip">₹10,000 Cash Prize</span>
+              <span className="ab-cash-chip">{event.cashPrizeBadge || '₹10,000 Cash Prize'}</span>
             )}
           </div>
 
@@ -182,8 +180,6 @@ export default function Events() {
           viewport={{ once: true }}
         >
           <div className="section-label">
-            <span className="label-number">02</span>
-            <span className="label-divider">/</span>
             <span className="label-text">CHALLENGE ARENAS</span>
           </div>
 
@@ -329,26 +325,10 @@ export default function Events() {
         />
       )}
 
-      {registeringEvent && !paymentData && (
+      {registeringEvent && (
         <RegisterModal
           event={registeringEvent}
           onClose={() => setRegisteringEvent(null)}
-          onPaymentSuccess={(data) => {
-            setPaymentData(data)
-            setRegisteringEvent(null)
-          }}
-        />
-      )}
-
-      {paymentData && (
-        <PaymentModal
-          paymentData={paymentData}
-          onClose={() => setPaymentData(null)}
-          onSuccess={() => {}}
-          onBack={() => {
-            setRegisteringEvent(paymentData.event)
-            setPaymentData(null)
-          }}
         />
       )}
     </section>
