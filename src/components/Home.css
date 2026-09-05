@@ -20,6 +20,39 @@
   z-index: 1;
 }
 
+/* Background Video */
+.home-video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  z-index: 0;
+  background: #020712;
+}
+
+/* Shade for legibility of overlaid UI */
+.home-video-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(ellipse at 50% 30%, transparent 0%, rgba(2, 7, 18, 0.25) 70%, rgba(2, 7, 18, 0.6) 100%),
+    linear-gradient(180deg, rgba(2, 7, 18, 0.55) 0%, rgba(2, 7, 18, 0.12) 30%, rgba(2, 7, 18, 0.2) 65%, rgba(2, 7, 18, 0.78) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Video layout stacks CTAs near the bottom so the title stays visible */
+.home-video-layout {
+  justify-content: flex-end;
+  padding-bottom: 96px;
+}
+
 /* Background Canvas */
 .home-canvas {
   position: absolute;
@@ -639,6 +672,11 @@
   transform: translateY(-2px);
 }
 
+/* Register CTA pinned to the bottom of the hero */
+.home-register-bottom {
+  margin-top: 18px;
+}
+
 /* Scroll Down Prompt */
 .home-scroll-prompt {
   display: flex;
@@ -704,8 +742,12 @@
 @media (max-width: 768px) {
   .home-hero-section {
     padding-top: 100px;
-    height: auto;
+    height: 100vh;
     min-height: 100vh;
+  }
+
+  .home-video-layout {
+    padding-bottom: 110px;
   }
 
   .zeno-cyber-title {
