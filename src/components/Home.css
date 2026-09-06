@@ -798,14 +798,40 @@
   }
 }
 
-/* Portrait / mobile: show the full 16:9 video instead of cropping sides */
+/* Portrait / mobile: flow the video as a banner card instead of a cropped full-bleed bg */
 @media (max-aspect-ratio: 1/1) {
+  .home-hero-section {
+    height: auto;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
   .home-video-bg {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
     width: 100%;
     height: auto;
-    box-shadow: 0 0 45px rgba(0, 240, 255, 0.14), 0 0 90px rgba(0, 102, 255, 0.1);
+    object-fit: contain;
+    border-radius: 14px;
+    box-shadow: 0 0 45px rgba(0, 240, 255, 0.16), 0 0 90px rgba(0, 102, 255, 0.12);
+  }
+
+  .home-video-shade {
+    display: none;
+  }
+
+  .home-container {
+    position: relative;
+    height: auto;
+    padding: 40px 0 56px 0;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .home-actions-wrapper {
+    margin: 0;
   }
 }
