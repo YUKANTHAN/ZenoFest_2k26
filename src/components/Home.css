@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
   background: #020712;
-  background-image: 
+  background-image:
     radial-gradient(circle at 50% 50%, rgba(0, 95, 190, 0.28) 0%, rgba(3, 14, 32, 0.88) 60%, #01040b 100%),
     linear-gradient(rgba(0, 240, 255, 0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 240, 255, 0.035) 1px, transparent 1px);
@@ -53,23 +53,44 @@
   padding-bottom: 96px;
 }
 
-/* Festival Logo anchored right-center beside the title */
 .home-logo {
   position: absolute;
   top: 72%;
   right: clamp(20px, 4vw, 64px);
   transform: translateY(-50%);
-  width: clamp(150px, 20vw, 300px);
-  height: auto;
+  width: clamp(190px, 22vw, 340px);
+  aspect-ratio: 16 / 9;
   z-index: 5;
   pointer-events: none;
-  filter: drop-shadow(0 0 35px rgba(0, 240, 255, 0.5)) drop-shadow(0 0 70px rgba(0, 102, 255, 0.3));
-  animation: logoGlow 3.5s ease-in-out infinite alternate;
+  border-radius: 10px;
+  overflow: hidden;
+  background: transparent;
 }
 
-@keyframes logoGlow {
-  0% { filter: drop-shadow(0 0 25px rgba(0, 240, 255, 0.35)) drop-shadow(0 0 55px rgba(0, 102, 255, 0.2)); transform: translateY(-50%) scale(1); }
-  100% { filter: drop-shadow(0 0 45px rgba(0, 240, 255, 0.65)) drop-shadow(0 0 90px rgba(0, 102, 255, 0.4)); transform: translateY(-50%) scale(1.03); }
+.home-logo-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  mix-blend-mode: screen;
+  opacity: 0.9;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 40%, rgba(0, 0, 0, 0.6) 58%, transparent 70%);
+  mask-image: radial-gradient(ellipse at center, #000 40%, rgba(0, 0, 0, 0.6) 58%, transparent 70%);
+}
+
+/* Hides the baked-in corner icon without touching the video itself */
+.home-logo-cover {
+  position: absolute;
+  left: 86%;
+  top: 74.5%;
+  width: 9.5%;
+  height: 7%;
+  background: #020712;
+  opacity: 0.95;
+  pointer-events: none;
+  z-index: 2;
+  -webkit-mask-image: radial-gradient(circle, #000 60%, rgba(0, 0, 0, 0.6) 80%, transparent 95%);
+  mask-image: radial-gradient(circle, #000 60%, rgba(0, 0, 0, 0.6) 80%, transparent 95%);
 }
 
 /* Background Canvas */
@@ -109,8 +130,15 @@
 }
 
 @keyframes flarePulse {
-  0% { opacity: 0.65; transform: scaleY(0.8); }
-  100% { opacity: 1; transform: scaleY(1.5); }
+  0% {
+    opacity: 0.65;
+    transform: scaleY(0.8);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scaleY(1.5);
+  }
 }
 
 /* Ambient Radial Glow */
@@ -142,10 +170,23 @@
 }
 
 @keyframes laserScan {
-  0% { top: 0%; opacity: 0; }
-  15% { opacity: 0.85; }
-  85% { opacity: 0.85; }
-  100% { top: 100%; opacity: 0; }
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.85;
+  }
+
+  85% {
+    opacity: 0.85;
+  }
+
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
 }
 
 /* Circuit SVG Overlay */
@@ -169,13 +210,23 @@
 }
 
 @keyframes dashMove {
-  from { stroke-dashoffset: 280; }
-  to { stroke-dashoffset: 0; }
+  from {
+    stroke-dashoffset: 280;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 @keyframes dashMoveReverse {
-  from { stroke-dashoffset: 0; }
-  to { stroke-dashoffset: 280; }
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: 280;
+  }
 }
 
 /* Main Container */
@@ -241,10 +292,29 @@
   pointer-events: none;
 }
 
-.hud-corner.tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
-.hud-corner.tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
-.hud-corner.bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
-.hud-corner.br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+.hud-corner.tl {
+  top: -1px;
+  left: -1px;
+  border-width: 2px 0 0 2px;
+}
+
+.hud-corner.tr {
+  top: -1px;
+  right: -1px;
+  border-width: 2px 2px 0 0;
+}
+
+.hud-corner.bl {
+  bottom: -1px;
+  left: -1px;
+  border-width: 0 0 2px 2px;
+}
+
+.hud-corner.br {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 2px 2px 0;
+}
 
 .hud-header {
   display: flex;
@@ -257,8 +327,15 @@
   text-transform: uppercase;
 }
 
-.hud-icon.glow-cyan { color: #00f0ff; filter: drop-shadow(0 0 4px #00f0ff); }
-.hud-icon.glow-blue { color: #0088ff; filter: drop-shadow(0 0 4px #0088ff); }
+.hud-icon.glow-cyan {
+  color: #00f0ff;
+  filter: drop-shadow(0 0 4px #00f0ff);
+}
+
+.hud-icon.glow-blue {
+  color: #0088ff;
+  filter: drop-shadow(0 0 4px #0088ff);
+}
 
 .hud-value-group {
   display: flex;
@@ -305,7 +382,9 @@
   box-shadow: 0 0 8px #00f0ff;
 }
 
-.fill-100 { width: 100%; }
+.fill-100 {
+  width: 100%;
+}
 
 .hud-indicator-grid {
   display: flex;
@@ -349,8 +428,15 @@
 }
 
 @keyframes livePulse {
-  0% { transform: scale(0.8); opacity: 0.5; }
-  100% { transform: scale(1.3); opacity: 1; }
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
 }
 
 .hud-status-text {
@@ -429,8 +515,13 @@
 }
 
 @keyframes rotateRing {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg); }
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
 
 .backplate-glow {
@@ -498,7 +589,7 @@
   position: relative;
   display: inline-block;
   color: transparent;
-  background: 
+  background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(170, 235, 255, 0.85) 45%, rgba(0, 175, 255, 0.75) 100%),
     repeating-linear-gradient(45deg, rgba(0, 240, 255, 0.45) 0px, rgba(0, 240, 255, 0.45) 2px, transparent 2px, transparent 8px),
     repeating-linear-gradient(-45deg, rgba(0, 140, 255, 0.45) 0px, rgba(0, 140, 255, 0.45) 2px, transparent 2px, transparent 8px);
@@ -561,8 +652,16 @@
 }
 
 @keyframes oPulse {
-  0% { transform: scale(0.85); opacity: 0.7; }
-  100% { transform: scale(1.35); opacity: 1; box-shadow: 0 0 45px #00f0ff, inset 0 0 30px #00f0ff; }
+  0% {
+    transform: scale(0.85);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: scale(1.35);
+    opacity: 1;
+    box-shadow: 0 0 45px #00f0ff, inset 0 0 30px #00f0ff;
+  }
 }
 
 /* 2K26 BADGE BELOW ZENOFEST */
@@ -709,8 +808,15 @@
     min-width: 45%;
   }
 
-  .ring-outer { width: 380px; height: 380px; }
-  .ring-middle { width: 280px; height: 280px; }
+  .ring-outer {
+    width: 380px;
+    height: 380px;
+  }
+
+  .ring-middle {
+    width: 280px;
+    height: 280px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -775,24 +881,29 @@
     font-size: clamp(1.8rem, 9.5vw, 3.2rem);
     letter-spacing: 2px;
   }
+
   .badge-year-text {
     font-size: clamp(2rem, 7vw, 3.2rem);
     letter-spacing: 6px;
   }
+
   .badge-line {
     width: 60px;
   }
+
   .title-tech-tag {
     font-size: 10px;
     letter-spacing: 1.5px;
     padding: 5px 12px;
   }
+
   .btn-cyber-primary {
     max-width: 240px;
     padding: 10px 18px;
     font-size: 11px;
     letter-spacing: 0.8px;
   }
+
   .home-lens-flare {
     display: none;
   }

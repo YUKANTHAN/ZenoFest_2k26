@@ -47,10 +47,7 @@ export default function Navbar() {
           {/* Brand Logo */}
           <div className="nav-brand" onClick={() => scrollToSection('home')}>
             <div className="brand-hex-icon">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-                <circle cx="12" cy="12" r="3" fill="currentColor" />
-              </svg>
+              <img src="/zenofest-logo-2x.png" alt="ZenoFest logo" className="nav-brand-logo" />
             </div>
             <div className="brand-text">
               <span className="brand-title">ZenoFest</span>

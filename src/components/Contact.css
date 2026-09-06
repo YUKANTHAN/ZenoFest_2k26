@@ -5,7 +5,7 @@
 .contact-section {
   position: relative;
   padding: 80px 20px 20px;
-  background: #04060e;
+  background: rgba(5, 10, 25, 0.55);
   overflow: hidden;
 }
 
