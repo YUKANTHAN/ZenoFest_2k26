@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Sparkles, Calendar, ChevronDown, ArrowRight } from 'lucide-react'
+import { Sparkles, Calendar, ArrowRight } from 'lucide-react'
 import './Home.css'
 
 export default function Home() {
@@ -42,28 +42,18 @@ export default function Home() {
             <span>Explore Events</span>
             <ArrowRight size={16} className="btn-arrow" />
           </button>
+          <a
+            href="https://forms.gle/vo2t7PCV5QAFyT8e6"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-cyber-primary"
+            style={{ textDecoration: 'none' }}
+          >
+            <Sparkles size={16} />
+            <span>Click to Register</span>
+            <ArrowRight size={16} className="btn-arrow" />
+          </a>
         </motion.div>
-
-        {/* Scroll Prompt Leading to About Section */}
-        <div className="home-scroll-prompt" onClick={() => scrollToSection('about')}>
-          <span className="scroll-text">SCROLL TO DISCOVER ABOUT</span>
-          <div className="scroll-arrow-box">
-            <ChevronDown size={18} className="scroll-arrow" />
-          </div>
-        </div>
-
-        {/* Register CTA anchored to the bottom of the hero */}
-        <a
-          href="https://forms.gle/vo2t7PCV5QAFyT8e6"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-cyber-primary home-register-bottom"
-          style={{ textDecoration: 'none' }}
-        >
-          <Sparkles size={16} />
-          <span>Click to Register</span>
-          <ArrowRight size={16} className="btn-arrow" />
-        </a>
       </div>
     </section>
   )
