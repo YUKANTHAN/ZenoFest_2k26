@@ -381,6 +381,7 @@
 .train-svg {
   width: 100%;
   height: 100%;
+  transform: scaleX(-1);
 }
 
 .train-smoke-particle {
@@ -567,8 +568,122 @@
   opacity: 0.4;
 }
 
-/* Responsive */
+/* Hide submarine on desktop */
+@media (min-width: 769px) {
+  .mobile-submarine-wrapper {
+    display: none;
+  }
+}
+
+/* Mobile DEVHACK Timeline Layout & Animations */
 @media (max-width: 768px) {
+  .timeline-scroll-wrapper {
+    min-height: auto;
+  }
+
+  .mobile-devhack-timeline-section {
+    padding: 65px 20px 80px 20px;
+    background: rgba(6, 11, 26, 0.4);
+    position: relative;
+    overflow: visible;
+  }
+
+  .mobile-timeline-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .mobile-timeline-tree {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding-left: 28px;
+  }
+
+  .mobile-central-line {
+    position: absolute;
+    left: 8px;
+    top: 10px;
+    bottom: 10px;
+    width: 3px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+  }
+
+  .mobile-line-pulse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(180deg, transparent, #00f0ff, transparent);
+    animation: mobileLinePulse 3s infinite ease-in-out;
+  }
+
+  @keyframes mobileLinePulse {
+    0% { top: 0%; opacity: 0; }
+    50% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+
+  .mobile-timeline-item {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .mobile-node-circle {
+    position: absolute;
+    left: -28px;
+    top: 18px;
+    transform: translateX(-50%);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #00f0ff;
+    background: #020712;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-node-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-timeline-item.reached .mobile-node-circle {
+    box-shadow: 0 0 12px var(--card-accent, #00f0ff);
+  }
+
+  .mobile-timeline-card {
+    background: #ffffff;
+    color: #000000;
+    border: 3px solid #000000;
+    border-radius: 12px;
+    box-shadow: 4px 4px 0px #000000;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .mobile-timeline-item:active .mobile-timeline-card {
+    transform: scale(0.98);
+  }
+
+  .mobile-time-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    color: #000000;
+    background: rgba(255, 255, 255, 0.4);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
   .cards-row {
     grid-template-columns: repeat(7, 240px);
     gap: 20px;

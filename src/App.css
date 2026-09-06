@@ -1,6 +1,56 @@
 body {
   margin: 0;
   background-color: #04060d;
+  cursor: none;
+}
+
+@media (hover: none), (pointer: coarse) {
+  body { cursor: auto; }
+}
+
+/* ---- Custom Cursor ---- */
+#cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #d4af37;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 99999;
+  transition: width .25s cubic-bezier(.22,1,.36,1),
+              height .25s cubic-bezier(.22,1,.36,1),
+              background .25s cubic-bezier(.22,1,.36,1),
+              border-color .25s cubic-bezier(.22,1,.36,1);
+  mix-blend-mode: screen;
+}
+
+#cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  background: #FFD95A;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 99999;
+  box-shadow: 0 0 12px 3px #FFD95A;
+}
+
+#cursor.grow {
+  width: 64px;
+  height: 64px;
+  background: rgba(212, 175, 55, .12);
+  border-color: #FFD95A;
+}
+
+@media (hover: none), (pointer: coarse) {
+  #cursor,
+  #cursor-dot { display: none; }
 }
 
 .app {

@@ -50,7 +50,7 @@
 /* Video layout stacks CTAs near the bottom so the title stays visible */
 .home-video-layout {
   justify-content: flex-end;
-  padding-bottom: 96px;
+  padding-bottom: 48px;
 }
 
 .home-logo {
@@ -77,6 +77,8 @@
   -webkit-mask-image: radial-gradient(ellipse at center, #000 40%, rgba(0, 0, 0, 0.6) 58%, transparent 70%);
   mask-image: radial-gradient(ellipse at center, #000 40%, rgba(0, 0, 0, 0.6) 58%, transparent 70%);
 }
+
+
 
 /* Hides the baked-in corner icon without touching the video itself */
 .home-logo-cover {
@@ -827,7 +829,14 @@
   }
 
   .home-logo {
-    display: none;
+    position: absolute;
+    top: auto;
+    bottom: 40px;
+    right: 50%;
+    transform: translateX(50%);
+    width: clamp(160px, 50vw, 260px);
+    aspect-ratio: 16 / 9;
+    opacity: 0.85;
   }
 
   .home-video-layout {

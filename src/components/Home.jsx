@@ -10,6 +10,7 @@ export default function Home() {
   const glowRef = useRef(null)
   const timerRef = useRef(null)
   const firedRef = useRef(false)
+  const busyRef = useRef(false)
   const [registering, setRegistering] = useState(false)
   const [showMorph, setShowMorph] = useState(false)
 
@@ -34,10 +35,7 @@ export default function Home() {
   const openRegister = () => {
     if (firedRef.current) return
     firedRef.current = true
-    const win = window.open(REGISTER_URL, '_blank', 'noopener,noreferrer')
-    if (!win) {
-      window.location.assign(REGISTER_URL)
-    }
+    window.open(REGISTER_URL, '_blank', 'noopener,noreferrer')
   }
 
   const resetMorph = () => {
@@ -52,12 +50,14 @@ export default function Home() {
     }
     setRegistering(false)
     setTimeout(() => {
+      busyRef.current = false
       firedRef.current = false
-    }, 700)
+    }, 900)
   }
 
   const handleRegister = () => {
-    if (registering || !morphRef.current) return
+    if (busyRef.current || registering || !morphRef.current) return
+    busyRef.current = true
     setRegistering(true)
     const v = morphRef.current
     try {
@@ -67,14 +67,22 @@ export default function Home() {
     }
     const p = v.play()
     if (p && typeof p.catch === 'function') {
-      p.catch(() => openRegister())
+      p.catch(openRegister)
     }
-    timerRef.current = setTimeout(openRegister, 2700)
+    timerRef.current = setTimeout(openRegister, 4500)
   }
 
+  // Redirect a moment after the animation ends so the final cube stays on screen.
+  const EXTRA = 1500
   const handleEnded = () => {
-    openRegister()
-    resetMorph()
+    if (timerRef.current) {
+      clearTimeout(timerRef.current)
+      timerRef.current = null
+    }
+    timerRef.current = setTimeout(() => {
+      openRegister()
+      resetMorph()
+    }, EXTRA)
   }
 
   return (

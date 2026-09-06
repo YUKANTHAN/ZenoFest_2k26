@@ -54,13 +54,11 @@
   text-transform: uppercase;
 }
 
-/* Grid Layout for Left Card & Map */
+/* Grid Layout for Coordinators Card (single centered panel) */
 .contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
-  align-items: stretch;
-  margin-bottom: 60px;
+  max-width: 720px;
+  margin: 0 auto;
+  margin-bottom: 20px;
 }
 
 /* ── LEFT CARD: CONTACT DETAILS ── */
@@ -182,27 +180,14 @@
   color: #06b6d4;
 }
 
-/* ── RIGHT CARD: GOOGLE MAP ── */
-.contact-map-wrap {
+/* ── FOOTER WRAP AFTER THE FULL-SCREEN EARTH ── */
+.contact-footer-wrap {
   position: relative;
-  background: rgba(11, 14, 32, 0.85);
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-  min-height: 320px;
+  z-index: 2;
+  background: #04070f;
+  padding: 72px 20px 40px;
 }
 
-.contact-map-iframe {
-  width: 100%;
-  height: 100%;
-  min-height: 320px;
-  border: 0;
-  filter: contrast(1.05) saturate(1.1);
-  display: block;
-}
-
-/* ── BOTTOM DIVIDER & FOOTER ── */
 .contact-divider {
   height: 1px;
   width: 100%;
@@ -267,20 +252,20 @@
 
 /* ── RESPONSIVE STYLES ── */
 @media (max-width: 900px) {
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
   .contact-card-left {
     padding: 24px 20px;
   }
-  .contact-map-wrap {
-    min-height: 280px;
+  .contact-footer-wrap {
+    padding: 56px 16px 32px;
   }
 }
 
 @media (max-width: 600px) {
   .contact-section {
     padding: 60px 16px 30px;
+  }
+  .contact-footer-wrap {
+    padding: 48px 16px 28px;
   }
   .footer-developers-grid {
     flex-direction: column;

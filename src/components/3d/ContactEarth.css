@@ -1,0 +1,240 @@
+/* ══════════════════════════════════════════════════════════
+   CONTACT EARTH — FULL-SCREEN SCROLL ZOOM
+   ══════════════════════════════════════════════════════════ */
+
+.contact-earth-pin {
+  position: relative;
+  height: 400vh;
+  background: #04070f;
+  z-index: 2;
+}
+
+.contact-earth-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.contact-earth-canvas-wrap {
+  position: absolute;
+  inset: 0;
+}
+
+.contact-earth-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.contact-earth-canvas canvas {
+  display: block;
+}
+
+/* ── Google satellite tiles overlay ── */
+.contact-earth-map {
+  position: absolute;
+  inset: 0;
+  background: #0b1220;
+  overflow: hidden;
+}
+
+.contact-earth-tiles {
+  position: absolute;
+  inset: 0;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.contact-earth-tile {
+  position: absolute;
+  width: 256px;
+  height: 256px;
+  overflow: hidden;
+}
+
+.contact-earth-tile img {
+  position: absolute;
+  inset: 0;
+  width: 256px;
+  height: 256px;
+  display: block;
+}
+
+.contact-earth-tile-labels {
+  opacity: 0.8;
+}
+
+.contact-earth-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 28%, rgba(4, 7, 15, 0.78) 100%);
+}
+
+/* ── Pulsing marker over the campus ── */
+.contact-earth-marker {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  z-index: 3;
+}
+
+.contact-earth-marker-ping,
+.contact-earth-marker-pulse {
+  position: absolute;
+  left: -24px;
+  top: -24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.contact-earth-marker-ping {
+  background: rgba(6, 182, 212, 0.25);
+  animation: markerPing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.contact-earth-marker-pulse {
+  background: rgba(6, 182, 212, 0.35);
+  animation: markerPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.contact-earth-marker-core {
+  position: absolute;
+  left: -22px;
+  top: -22px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  background: linear-gradient(135deg, #0ea5e9, #1e3a8a);
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 40px rgba(6, 182, 212, 0.9), 0 0 80px rgba(6, 182, 212, 0.6);
+  animation: markerBob 2.4s ease-in-out infinite;
+}
+
+@keyframes markerPing {
+  0% { transform: scale(0.4); opacity: 1; }
+  80%, 100% { transform: scale(2.6); opacity: 0; }
+}
+
+@keyframes markerPulse {
+  0%, 100% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.25); opacity: 0.5; }
+}
+
+@keyframes markerBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* ── Landing location card ── */
+.contact-earth-card {
+  position: absolute;
+  left: 50%;
+  bottom: 42px;
+  transform: translateX(-50%);
+  z-index: 4;
+  width: min(430px, calc(100vw - 32px));
+  text-align: center;
+  background: rgba(2, 8, 16, 0.92);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(6, 182, 212, 0.45);
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.7), inset 0 0 24px rgba(6, 182, 212, 0.08);
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.contact-earth-card-title {
+  color: #ffffff;
+  font-weight: 800;
+  font-size: clamp(17px, 2.5vw, 22px);
+  letter-spacing: 0.02em;
+}
+
+.contact-earth-card-sub {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: clamp(12px, 1.5vw, 14px);
+  margin-top: 6px;
+  font-family: 'Space Mono', monospace;
+}
+
+.contact-earth-card-coords {
+  color: #67e8f9;
+  font-size: clamp(11px, 1.3vw, 13px);
+  margin-top: 4px;
+  font-family: 'Space Mono', monospace;
+}
+
+.contact-earth-card-tag {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(34, 211, 238, 0.5);
+  color: #22d3ee;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-family: 'Space Mono', monospace;
+}
+
+/* ── Scroll hint ── */
+.contact-earth-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 34px;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.contact-earth-hint-text {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: rgba(34, 211, 238, 0.85);
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-shadow: 0 0 12px rgba(6, 182, 212, 0.6);
+}
+
+.contact-earth-hint-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(34, 211, 238, 0), rgba(34, 211, 238, 0.9));
+  animation: hintLine 1.6s ease-in-out infinite;
+}
+
+@keyframes hintLine {
+  0% { transform: scaleY(0); transform-origin: top; opacity: 0; }
+  40% { transform: scaleY(1); transform-origin: top; opacity: 1; }
+  60% { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
+  100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+}
+
+@media (max-width: 600px) {
+  .contact-earth-card {
+    bottom: 32px;
+    padding: 14px 14px;
+  }
+  .contact-earth-hint {
+    bottom: 22px;
+  }
+}

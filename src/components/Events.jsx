@@ -1,5 +1,5 @@
-import { useState, useMemo } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useMemo, useRef } from 'react'
+import { motion, AnimatePresence, useInView } from 'framer-motion'
 import {
   Calendar,
   Trophy,
@@ -99,107 +99,17 @@ export default function Events() {
   }
 
   const renderEventCard = (event, idx) => {
-    const isHovered = hoveredId === event.id
-    const imgFailed = !!imgFails[event.id]
-    const openRules = () => setSelectedEvent(event)
-
     return (
-      <motion.div
+      <EventCard
         key={event.id}
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.92 }}
-        transition={{ duration: 0.45, delay: idx * 0.07 }}
-        className="ab-tile-wrap"
-        style={{ perspective: 1200 }}
-        onMouseEnter={() => setHoveredId(event.id)}
-        onMouseLeave={() => setHoveredId(null)}
-        onClick={() => {
-          if (window.innerWidth < 768) {
-            isHovered ? openRules() : setHoveredId(event.id)
-          } else {
-            openRules()
-          }
-        }}
-      >
-        <div className={`ab-bloom ${isHovered ? 'on' : ''}`} />
-
-        <motion.div
-          className="ab-stack"
-          style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
-          animate={{ rotateX: 75 * !!isHovered }}
-          transition={{ type: 'spring', stiffness: 120, damping: 25 }}
-        >
-          {/* Card Frame */}
-          <div className={`ab-frame ${isHovered ? 'hovered' : ''}`}>
-            {!imgFailed ? (
-              <img
-                src={event.coverImage}
-                alt={event.title}
-                loading="lazy"
-                className={`ab-img ${isHovered ? 'hovered' : ''}`}
-                style={{
-                  objectFit: event.objectFit || 'cover',
-                  objectPosition: event.objectPosition || 'center'
-                }}
-                onError={() => setImgFails((p) => (p[event.id] ? p : { ...p, [event.id]: true }))}
-              />
-            ) : (
-              <div className="ab-img-fallback shown">
-                <span>{event.title}</span>
-              </div>
-            )}
-            <div className="ab-overlay" />
-            {event.hasCashPrize && (
-              <span className="ab-cash-chip">{event.cashPrizeBadge || '₹10,000 Cash Prize'}</span>
-            )}
-          </div>
-
-          {/* Reveal Layer */}
-          <motion.div
-            className="ab-reveal"
-            initial={{ opacity: 0, z: 0 }}
-            animate={{
-              opacity: isHovered ? 1 : 0,
-              z: isHovered ? 120 : 0,
-              y: 0,
-              rotateX: isHovered ? -75 : 0
-            }}
-            transition={{ type: 'spring', stiffness: 120, damping: 25 }}
-            style={{ transformStyle: 'preserve-3d', pointerEvents: isHovered ? 'auto' : 'none', willChange: 'transform' }}
-          >
-            <div className="ab-title-box">
-              <h4 className="ab-tile-title">{event.title}</h4>
-            </div>
-
-            <div className="ab-divider" />
-
-            <div className="ab-info">
-              <p className="ab-info-row">
-                <span className="ab-info-label">Time : </span>
-                <span className="ab-info-val">{event.time}</span>
-              </p>
-              <p className="ab-info-row ab-info-clamp">
-                <span className="ab-info-label">Date : </span>
-                <span className="ab-info-val">{event.date}</span>
-              </p>
-              <p className="ab-info-row ab-info-clamp">
-                <span className="ab-info-label">Venue : </span>
-                <span className="ab-info-val">{event.venue}</span>
-              </p>
-            </div>
-
-            <motion.button
-              className="ab-know-more"
-              onClick={(e) => { e.stopPropagation(); openRules() }}
-              whileHover={{ scale: 1.1, boxShadow: '0px 0px 20px rgb(220, 38, 38)', backgroundColor: '#ffffff', color: '#000000' }}
-              whileTap={{ scale: 0.9 }}
-            >
-              Know More
-            </motion.button>
-          </motion.div>
-        </motion.div>
-      </motion.div>
+        event={event}
+        idx={idx}
+        imgFails={imgFails}
+        setImgFails={setImgFails}
+        hoveredId={hoveredId}
+        setHoveredId={setHoveredId}
+        openRules={() => setSelectedEvent(event)}
+      />
     )
   }
 
@@ -379,5 +289,118 @@ export default function Events() {
         />
       )}
     </section>
+  )
+}
+
+function EventCard({ event, idx, imgFails, setImgFails, hoveredId, setHoveredId, openRules }) {
+  const isHovered = hoveredId === event.id
+  const imgFailed = !!imgFails[event.id]
+
+  const wrapRef = useRef(null)
+  const inView = useInView(wrapRef, {
+    amount: 0.3,
+    margin: '0px 0px -40% 0px'
+  })
+
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+  const isRevealed = isMobile ? inView : isHovered
+
+  return (
+    <motion.div
+      ref={wrapRef}
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.92 }}
+      transition={{ duration: 0.45, delay: idx * 0.07 }}
+      className="ab-tile-wrap"
+      style={{ perspective: 1200 }}
+      onMouseEnter={() => setHoveredId(event.id)}
+      onMouseLeave={() => setHoveredId(null)}
+      onClick={() => {
+        if (isMobile && !isRevealed) {
+          setHoveredId(event.id)
+        } else {
+          openRules()
+        }
+      }}
+    >
+      <div className={`ab-bloom ${isRevealed ? 'on' : ''}`} />
+
+      <motion.div
+        className="ab-stack"
+        style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
+        animate={{ rotateX: 75 * !!isRevealed }}
+        transition={{ type: 'spring', stiffness: 120, damping: 25 }}
+      >
+        {/* Card Frame */}
+        <div className={`ab-frame ${isRevealed ? 'hovered' : ''}`}>
+          {!imgFailed ? (
+            <img
+              src={event.coverImage}
+              alt={event.title}
+              loading="lazy"
+              className={`ab-img ${isRevealed ? 'hovered' : ''}`}
+              style={{
+                objectFit: event.objectFit || 'cover',
+                objectPosition: event.objectPosition || 'center'
+              }}
+              onError={() => setImgFails((p) => (p[event.id] ? p : { ...p, [event.id]: true }))}
+            />
+          ) : (
+            <div className="ab-img-fallback shown">
+              <span>{event.title}</span>
+            </div>
+          )}
+          <div className="ab-overlay" />
+          {event.hasCashPrize && (
+            <span className="ab-cash-chip">{event.cashPrizeBadge || '₹10,000 Cash Prize'}</span>
+          )}
+        </div>
+
+        {/* Reveal Layer */}
+        <motion.div
+          className="ab-reveal"
+          initial={{ opacity: 0, z: 0 }}
+          animate={{
+            opacity: isRevealed ? 1 : 0,
+            z: isRevealed ? 120 : 0,
+            y: 0,
+            rotateX: isRevealed ? -75 : 0
+          }}
+          transition={{ type: 'spring', stiffness: 120, damping: 25 }}
+          style={{ transformStyle: 'preserve-3d', pointerEvents: isRevealed ? 'auto' : 'none', willChange: 'transform' }}
+        >
+          <div className="ab-title-box">
+            <h4 className="ab-tile-title">{event.title}</h4>
+          </div>
+
+          <div className="ab-divider" />
+
+          <div className="ab-info">
+            <p className="ab-info-row">
+              <span className="ab-info-label">Time : </span>
+              <span className="ab-info-val">{event.time}</span>
+            </p>
+            <p className="ab-info-row ab-info-clamp">
+              <span className="ab-info-label">Date : </span>
+              <span className="ab-info-val">{event.date}</span>
+            </p>
+            <p className="ab-info-row ab-info-clamp">
+              <span className="ab-info-label">Venue : </span>
+              <span className="ab-info-val">{event.venue}</span>
+            </p>
+          </div>
+
+          <motion.button
+            className="ab-know-more"
+            onClick={(e) => { e.stopPropagation(); openRules() }}
+            whileHover={{ scale: 1.1, boxShadow: '0px 0px 20px rgb(220, 38, 38)', backgroundColor: '#ffffff', color: '#000000' }}
+            whileTap={{ scale: 0.9 }}
+          >
+            Know More
+          </motion.button>
+        </motion.div>
+      </motion.div>
+    </motion.div>
   )
 }
