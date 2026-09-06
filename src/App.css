@@ -1,3 +1,14 @@
+body {
+  margin: 0;
+  background-color: #050a1f;
+  background-image:
+    radial-gradient(circle at 50% 40%, rgba(0, 95, 190, 0.25) 0%, rgba(3, 14, 32, 0.8) 55%, #050a1f 100%),
+    linear-gradient(rgba(0, 240, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.035) 1px, transparent 1px);
+  background-size: 100% 100%, 46px 46px, 46px 46px;
+  background-attachment: fixed;
+}
+
 .app {
   min-height: 100vh;
   background: transparent;
@@ -6,4 +17,3 @@
   position: relative;
   z-index: 1;
 }
-

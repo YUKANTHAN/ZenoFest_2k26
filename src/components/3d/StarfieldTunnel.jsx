@@ -22,10 +22,10 @@ export default function StarfieldTunnel({ active = true, speedMultiplier = 0.4 }
     const width = container.clientWidth || window.innerWidth
     const height = container.clientHeight || window.innerHeight
 
-    // 1. Scene & Camera Setup - Pitch Black Theme
+    // 1. Scene & Camera Setup - Deep Navy Video-Match Theme
     const scene = new THREE.Scene()
-    scene.background = new THREE.Color('#000000')
-    scene.fog = new THREE.FogExp2('#000000', 0.018)
+    scene.background = new THREE.Color('#040a1e')
+    scene.fog = new THREE.FogExp2('#040a1e', 0.018)
 
     const camera = new THREE.PerspectiveCamera(65, width / height, 0.1, 1000)
     camera.position.set(0, 0, 5)
