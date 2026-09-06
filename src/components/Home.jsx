@@ -26,6 +26,13 @@ export default function Home() {
       </video>
       <div className="home-video-shade" />
 
+      {/* Festival Logo (right side) — will become the animated register video */}
+      <img
+        className="home-logo"
+        src="/zenofest-logo-2x.png"
+        alt="ZenoFest logo"
+      />
+
       <div className="home-container home-video-layout">
         {/* CTA Actions */}
         <motion.div

@@ -70,9 +70,9 @@ b_cx, b_font = letter_layout(BADGE, 64, 22)
 tag_cx, tag_font = letter_layout(TAGLINE, 46, 10)
 tech_cx, tech_font = letter_layout(TECHTAG, 26, 16)
 
-TITLE_Y = 352
-BADGE_Y = 500
-TAGLINE_Y = 560
+TITLE_Y = 262
+BADGE_Y = 398
+TAGLINE_Y = 456
 TECHTAG_Y = 168
 
 title_ignite_start = 0.9
