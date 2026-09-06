@@ -4,7 +4,7 @@
 
 .contact-earth-pin {
   position: relative;
-  height: 400vh;
+  height: 380vh;
   background: #04070f;
   z-index: 2;
 }
@@ -74,7 +74,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(ellipse at center, transparent 28%, rgba(4, 7, 15, 0.78) 100%);
+  background: radial-gradient(ellipse at center, transparent 42%, rgba(4, 7, 15, 0.55) 100%);
 }
 
 /* ── Pulsing marker over the campus ── */

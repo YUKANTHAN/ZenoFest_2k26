@@ -155,8 +155,8 @@ export default function Contact() {
               <div className="dev-center-divider" />
 
               <div className="dev-column">
-                <span>Vignesh B, III/IT</span>
                 <span>Yukanthan P G, III/IT</span>
+                <span>Vignesh B, III/IT</span>
                 <span>Ramakrishnan M, III/IT</span>
                 <span>Ram Kumar J, III/IT</span>
               </div>
