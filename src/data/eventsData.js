@@ -56,7 +56,7 @@ export const eventsData = [
       { name: 'Dr. P. Edwin Dhas', role: 'Staff Coordinator (AP/IT)' },
       { name: 'Ramakrishnan M', role: 'Student Coordinator (III/IT)' },
       { name: 'Yukanthan P G', role: 'Student Coordinator (III/IT)' },
-      { name: 'Guhan S', role: 'Student Coordinator (III/IT)' },
+      { name: 'Gughan S', role: 'Student Coordinator (III/IT)' },
       { name: 'Sumithra S', role: 'Student Coordinator (III/IT)' },
       { name: 'Narmatha Baby B', role: 'Student Coordinator (III/IT)' },
       { name: 'Rishiga R', role: 'Student Coordinator (III/IT)' },
@@ -136,7 +136,8 @@ export const eventsData = [
       { name: 'Mari Selvam M', role: 'Student Coordinator (III/IT)' },
       { name: 'Madhumitha B', role: 'Student Coordinator (III/IT)' },
       { name: 'Muthu Lakshmi R', role: 'Student Coordinator (III/IT)' },
-      { name: 'Saranya S', role: 'Student Coordinator (III/IT)' }
+      { name: 'Saranya S', role: 'Student Coordinator (III/IT)' },
+      { name: 'Yukanthan P G', role: 'Student Coordinator (III/IT)' }
     ]
   },
   {
@@ -197,7 +198,8 @@ export const eventsData = [
       { name: 'Lavanya K', role: 'Student Coordinator (III/IT)' },
       { name: 'Jothi Lakshmi K', role: 'Student Coordinator (III/IT)' },
       { name: 'Akash B', role: 'Student Coordinator (III/IT)' },
-      { name: 'Bharathan K', role: 'Student Coordinator (III/IT)' }
+      { name: 'Bharathan K', role: 'Student Coordinator (III/IT)' },
+      { name: 'Yukanthan P G', role: 'Student Coordinator (III/IT)' },
     ]
   },
 
@@ -320,8 +322,9 @@ export const eventsData = [
     coordinators: [
       { name: 'Ms. M. Anitha', role: 'Staff Coordinator (AP/IT)' },
       { name: 'Ms. S. Sumathi', role: 'Staff Coordinator (AP/IT)' },
-      { name: 'Manoj M', role: 'Student Coordinator (III/IT)' },
       { name: 'Jagan Kumar V', role: 'Student Coordinator (III/IT)' },
+      { name: 'Manoj M', role: 'Student Coordinator (III/IT)' },
+
       { name: 'Caroline M', role: 'Student Coordinator (III/IT)' },
       { name: 'Sujitha A', role: 'Student Coordinator (III/IT)' },
       { name: 'Kanaga Yuvasri R', role: 'Student Coordinator (III/IT)' }
