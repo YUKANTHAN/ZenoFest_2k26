@@ -1,11 +1,11 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useCallback, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Sparkles, Calendar, ArrowRight } from 'lucide-react'
 import './Home.css'
 
 const REGISTER_URL = 'https://forms.gle/vo2t7PCV5QAFyT8e6'
 
-export default function Home() {
+export default function Home({ ready }) {
   const morphRef = useRef(null)
   const glowRef = useRef(null)
   const timerRef = useRef(null)
@@ -14,17 +14,67 @@ export default function Home() {
   const [registering, setRegistering] = useState(false)
   const [showMorph, setShowMorph] = useState(false)
 
+  useEffect(() => {
+    if (!ready) return
+    const v = glowRef.current
+    if (!v) return
+    v.currentTime = 0
+    const p = v.play()
+    if (p && typeof p.catch === 'function') {
+      p.catch(() => {})
+    }
+  }, [ready])
+
   const glowDoneRef = useRef(false)
+  const revealCbRef = useRef(0)
+  const GLOW_REVEAL_AT = 6
+
+  const revealMorph = useCallback(() => {
+    if (glowDoneRef.current) return
+    const v = glowRef.current
+    if (!v) return
+    glowDoneRef.current = true
+    if (typeof v.cancelVideoFrameCallback === 'function' && revealCbRef.current) {
+      v.cancelVideoFrameCallback(revealCbRef.current)
+      revealCbRef.current = 0
+    }
+    setShowMorph(true)
+  }, [])
+
+  const watchGlowFrame = useCallback((_now, meta) => {
+    const v = glowRef.current
+    if (!v || glowDoneRef.current) return
+    if (meta.mediaTime >= GLOW_REVEAL_AT) {
+      revealMorph()
+      return
+    }
+    revealCbRef.current = v.requestVideoFrameCallback(watchGlowFrame)
+  }, [revealMorph])
+
+  const scheduleGlowReveal = useCallback(() => {
+    const v = glowRef.current
+    if (!v || glowDoneRef.current || showMorph) return
+    if (typeof v.requestVideoFrameCallback !== 'function' || v.paused) return
+    revealCbRef.current = v.requestVideoFrameCallback(watchGlowFrame)
+  }, [watchGlowFrame, showMorph])
 
   const handleGlowTime = () => {
     const v = glowRef.current
     if (showMorph || glowDoneRef.current || !v) return
-    // Show the logo at the 6s mark of the first pass of the glow video.
-    if (v.currentTime >= 6) {
-      glowDoneRef.current = true
-      setShowMorph(true)
+    if (typeof v.requestVideoFrameCallback === 'function') return
+    if (v.currentTime >= GLOW_REVEAL_AT) {
+      revealMorph()
     }
   }
+
+  useEffect(() => {
+    return () => {
+      const v = glowRef.current
+      if (v && typeof v.cancelVideoFrameCallback === 'function' && revealCbRef.current) {
+        v.cancelVideoFrameCallback(revealCbRef.current)
+      }
+    }
+  }, [])
     const scrollToSection = (id) => {
     const el = document.getElementById(id)
     if (el) {
@@ -91,13 +141,14 @@ export default function Home() {
       <video
         className="home-video-bg"
         ref={glowRef}
-        autoPlay
         muted
         loop
         playsInline
         preload="auto"
         aria-hidden="true"
         onTimeUpdate={handleGlowTime}
+        onPlaying={scheduleGlowReveal}
+        onLoadedData={scheduleGlowReveal}
       >
         <source src="/zenofest_glowing.mp4" type="video/mp4" />
       </video>

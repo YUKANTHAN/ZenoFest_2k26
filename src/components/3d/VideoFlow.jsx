@@ -45,6 +45,9 @@ export default function VideoFlow() {
     let trail = [] // cursor sparks (screen space)
     let scrollX = 0
     let scrollY = 0
+    let lastTime = 0
+    let elapsed = 0
+    const MAX_DELTA = 0.1 // cap at 100ms to prevent large jumps on lag
     const pointer = { cx: -1e4, cy: -1e4, active: false, down: false }
 
     const resize = () => {
@@ -295,7 +298,13 @@ p.vx *= 0.9
     }
 
     const loop = (time) => {
-      step(time / 1000)
+      const now = time / 1000
+      if (lastTime === 0) lastTime = now
+      let dt = now - lastTime
+      lastTime = now
+      if (dt > MAX_DELTA) dt = MAX_DELTA
+      elapsed += dt
+      step(elapsed)
       rafId = requestAnimationFrame(loop)
     }
 
@@ -324,7 +333,7 @@ p.vx *= 0.9
             vx: (Math.random() - 0.5) * 3 * sc,
             vy: (Math.random() - 0.5) * 3 * sc,
             c,
-            t0: performance.now() / 1000,
+            t0: elapsed,
             life: 0.5 + Math.random() * 0.4,
           })
         }
@@ -340,7 +349,7 @@ p.vx *= 0.9
       rings.push({
         x: e.clientX + offX,
         y: e.clientY + offY,
-        t0: performance.now() / 1000,
+        t0: elapsed,
       })
       const R = 180 * sc
       const R2 = R * R

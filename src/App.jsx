@@ -81,7 +81,7 @@ function App() {
       {loading && <LoadingScreen onComplete={handleLoadingComplete} />}
       <div className="app">
         <Navbar />
-        <Home />
+        <Home ready={!loading} />
         <About />
         <Events />
         <Timeline />
