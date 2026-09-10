@@ -218,7 +218,7 @@
 
 .footer-developers-grid {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   gap: 36px;
   margin-bottom: 0px;
