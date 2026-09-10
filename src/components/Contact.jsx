@@ -142,7 +142,7 @@ export default function Contact() {
             transition={{ duration: 0.5, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <h3 className="footer-designed-by-title">Design and Developed by</h3>
+            <h3 className="footer-designed-by-title">Designed and Developed by</h3>
 
             <div className="footer-developers-grid">
               <div className="dev-column">
@@ -159,6 +159,13 @@ export default function Contact() {
                 <span>Vignesh B, III/IT</span>
                 <span>Ramakrishnan M, III/IT</span>
                 <span>Ram Kumar J, III/IT</span>
+              </div>
+
+              <div className="dev-center-divider" />
+
+              <div className="dev-column">
+                <span>Jagan Kumar V, III/IT</span>
+                <span>Gughan S, III/IT</span>
               </div>
             </div>
           </motion.div>
