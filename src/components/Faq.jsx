@@ -8,7 +8,7 @@ const faqData = [
     id: 1,
     numLabel: '01',
     question: 'How do I register for Zenofest, and is on-spot registration available?',
-    answer: 'You can register online through the registration portal on our official website. On-spot registration is not available for this event.'
+    answer: 'You can register online through the registration portal on our official website. No on-spot registration is available.'
   },
   {
     id: 2,
