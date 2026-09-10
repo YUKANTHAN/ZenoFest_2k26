@@ -20,7 +20,7 @@ const faqData = [
     id: 3,
     numLabel: '03',
     question: 'Can I participate in multiple events at Zenofest?',
-    answer: 'Yes, you can register for multiple technical and non-technical events as long as their scheduled timings do not overlap. Please review the Event Schedule timeline before finalizing your choices.'
+    answer: 'Yes, you can register for one technical and one non-technical event as long as their scheduled timings do not overlap. Please review the Event Schedule timeline before finalizing your choices.'
   },
   {
     id: 4,
