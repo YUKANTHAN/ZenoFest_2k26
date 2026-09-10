@@ -122,6 +122,8 @@ export const eventsData = [
       'AI tools are allowed for research and copy, but NOT for auto-generating UI designs or copying templates.',
       'Only Figma is allowed for this event.',
       'Final submission must be made before the deadline.',
+      'Teams should keep a backup/export of their work in case of technical issues. Organizers will not be responsible for loss of unsaved work.',
+      'Participants are advised to save/sync their work regularly.',
       'Judging based on UX, UI, creativity, innovation, user flow, and presentation.',
       'Judges decision is final and binding.'
     ],
