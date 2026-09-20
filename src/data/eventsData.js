@@ -83,37 +83,13 @@ export const eventsData = [
     firstPrize: 'Winner Trophy + Certificate of Merit',
     secondPrize: 'Runner Trophy + Certificate of Merit',
     thirdPrize: 'Certificate of Appreciation',
-    overview: 'A 2-hour UI/UX design challenge where participants are given a problem statement on the spot. Teams will go through ideation, wireframing, UI design, and prototyping to present a final solution.',
+    overview: 'A UI/UX design challenge where participants are given a problem statement on the spot. Teams will design high-fidelity Figma prototypes and present their solutions.',
     rounds: [
       {
         roundNumber: '01',
-        title: 'Problem Understanding & Ideation',
-        time: '20 Mins',
-        desc: 'Understand the problem statement, brainstorm solutions, and conduct necessary research.'
-      },
-      {
-        roundNumber: '02',
-        title: 'UI Design',
-        time: '45 Mins',
-        desc: 'Design the high-fidelity UI screens in Figma.'
-      },
-      {
-        roundNumber: '03',
-        title: 'Wireframing / User Flow',
-        time: '25 Mins',
-        desc: 'Create wireframes and define the user flow.'
-      },
-      {
-        roundNumber: '04',
-        title: 'Prototyping',
-        time: '20 Mins',
-        desc: 'Build interactive clickable prototypes.'
-      },
-      {
-        roundNumber: '05',
-        title: 'Final Review & Presentation Prep',
-        time: '10 Mins',
-        desc: 'Prepare for presentation and finalize the prototype.'
+        title: 'Design Sprint & Presentation',
+        time: '90 Mins Design + 30 Mins Presentation',
+        desc: 'Teams receive the problem statement and have 90 minutes to complete ideation, wireframing, UI design, and prototyping in Figma. The final 30 minutes are allocated for each team to present their solution to the judges.'
       }
     ],
     rules: [
@@ -222,10 +198,10 @@ export const eventsData = [
     time: '02:00 PM – 03:00 PM',
     venue: 'III Yr IT class (TF01)',
     hasCashPrize: false,
-    prizePool: 'Winner Trophy + Certificate of Merit + Gift Hampers',
-    firstPrize: 'Winner Trophy + Certificate of Merit + Hamper',
-    secondPrize: 'Runner Trophy + Certificate of Merit',
-    thirdPrize: 'Certificate of Appreciation',
+    prizePool: 'Gift Hampers + E-Certificates for all participants',
+    firstPrize: 'Gift Hamper',
+    secondPrize: 'Gift Hamper',
+    thirdPrize: 'E-Certificate',
     overview: 'A 3-round non-technical event testing your pop-culture knowledge, quick thinking, and deduction skills. Identify logos, guess personas using emojis, and connect progressive hints before the time runs out!',
     rounds: [
       {
@@ -283,10 +259,10 @@ export const eventsData = [
     time: '02:00 PM – 03:00 PM',
     venue: 'II yr IT Class (TF02)',
     hasCashPrize: false,
-    prizePool: 'Winner Trophy + Certificate of Merit + Fest Merchandise',
-    firstPrize: 'Winner Trophy + Certificate of Merit + Swag',
-    secondPrize: 'Runner Trophy + Certificate of Merit',
-    thirdPrize: 'Certificate of Appreciation',
+    prizePool: 'Fest Merchandise + E-Certificates for all participants',
+    firstPrize: 'Fest Merchandise',
+    secondPrize: 'Fest Merchandise',
+    thirdPrize: 'E-Certificate',
     overview: 'Rapid Fire is a lightning-fast quiz event covering Technology, Apps, Social Media, Entertainment, and General Knowledge. Participants will battle against the clock across three intense rounds. Hesitation costs victory!',
     rounds: [
       {
@@ -349,9 +325,9 @@ export const eventsData = [
     venue: 'IT Seminar Hall',
     hasCashPrize: true,
     cashPrizeBadge: '₹1,000 Cash Prize',
-    prizePool: '₹1,000 Cash Prize for 1st Winner',
+    prizePool: '₹1,000 Cash Prize for 1st Winner + E-Certificates for all participants',
     firstPrize: '₹1,000 (Sole Winner)',
-    firstPrizePerk: 'Certificate of Merit + Cash Prize',
+    firstPrizePerk: 'E-Certificate + Cash Prize',
     secondPrize: null,
     thirdPrize: null,
     overview: 'Get ready for intense action in the Free Fire Esports tournament! The event consists of two rounds: Battle Royale and Clash Squad. Prove your tactical superiority and outlast your opponents. The only prize for this tournament is a ₹1,000 cash prize awarded exclusively to the single winner who claims victory.',
