@@ -40,15 +40,13 @@ export const eventsData = [
       'Team Size: Each team must have between 2 to 3 members.',
       'Presentation Time: Each team has 2 to 4 minutes to present their project. Strictly no extension beyond the allotted time.',
       'Prototype/Model: It is highly recommended to showcase a working prototype or model during the presentation.',
-      'GitHub Repository: Each team must create a separate repository for their project under the Zenofest 2k26 GitHub Organization and submit the repository link.',
       'Project Documentation: Each team must bring proper documentation related to their project.',
       'No External Help: Use only your own knowledge and project work; no outside assistance is allowed during the presentation.',
-      'Winner Calculation: Evaluation will be based on Innovation, Teamwork, and Clarity of presentation. The project prototype/model, GitHub repository, and project documentation will also be considered.'
+      'Winner Calculation: Evaluation will be based on Innovation, Teamwork, and Clarity of presentation. The project prototype/model and project documentation will also be considered.'
     ],
     requirements: [
       'College ID card of all team members',
       'Working prototype / model',
-      'GitHub repository link under the Zenofest 2k26 Organization',
       'Proper documentation related to the project'
     ],
     coordinators: [
